@@ -1,0 +1,82 @@
+﻿<Page x:Class="Storekeeper.Pages.MessagePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Storekeeper.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MessagePage" Loaded="Page_Loaded">
+
+    <Grid Grid.Column="1" Margin="30" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Width="300" HorizontalAlignment="Left" >
+
+        </Grid>
+        <TextBlock x:Name="TitlePage" FontSize="25" HorizontalAlignment="Center" Grid.Row="0" Style="{StaticResource TxtBlock2}">Сообщения</TextBlock>
+        <Line Stretch="Fill"  Stroke="Black" X2="1" StrokeThickness="5" Grid.Row="1"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBlock  Margin="5" Style="{StaticResource TxtBlock2}" >Поиск</TextBlock>
+                <TextBox x:Name="SearchTb" Style="{StaticResource TextBox}" TextChanged="SearchTb_TextChanged"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBlock Margin="5" Style="{StaticResource TxtBlock2}" >Сортировка:</TextBlock>
+                <ComboBox Name="CbSort" Template="{DynamicResource ComboBoxTemplate1}" Style="{StaticResource ComboBox}"  SelectionChanged="CbSort_SelectionChanged">
+                    <ComboBoxItem  Tag="1" Content="Все" ></ComboBoxItem>
+                    <ComboBoxItem Tag="2" Content="А-Я" ></ComboBoxItem>
+                    <ComboBoxItem Tag="3" Content="Я-А" ></ComboBoxItem>
+                    <ComboBoxItem Tag="4" Content="Старые сообщения" ></ComboBoxItem>
+                    <ComboBoxItem Tag="5" Content="Новые сообщения" ></ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+
+
+            <StackPanel Orientation="Horizontal">
+
+                <Button x:Name="Open" Click="Open_Click"  Style="{StaticResource Button2}" Width="150" Content="Открыто"></Button>
+                <Button x:Name="Close" Click="Close_Click"  Style="{StaticResource Button2}" Width="150" Content="Закрыто"></Button>
+            </StackPanel>
+        </StackPanel>
+        <ListView Grid.Row="5" x:Name="HistoryList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="2" BorderBrush="Black" Background="White">
+                        <Grid Margin="20" Width="400" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="{Binding DateMessage}" Style="{StaticResource TxtBlock}" Grid.Row="0"></TextBlock>
+                            <TextBlock Text="{Binding Text}" Style="{StaticResource TxtBlock}" Grid.Row="2" TextWrapping="Wrap"></TextBlock>
+                            <TextBlock  Text="{Binding Name}" Style="{StaticResource TxtBlock}" Grid.Row="1"></TextBlock>
+                            <TextBlock  Text="{Binding StateMessage.Name}" Style="{StaticResource TxtBlock}" Grid.Row="3" Foreground="{Binding Color}"></TextBlock>
+
+                           
+
+                        </Grid>
+                    </Border>
+
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+
+        <Button Grid.Row="6" Margin="10" Name="MessageBtn" Click="MessageBtn_Click"  Style="{StaticResource Button}">Создать сообщение</Button>
+    </Grid>
+</Page>

@@ -1,0 +1,187 @@
+﻿<Page x:Class="Client.Pages.CheckoutPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Client.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CheckoutPage"
+      DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+
+            <RowDefinition Height="auto"></RowDefinition>
+            
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"></ColumnDefinition>
+            <ColumnDefinition Width="5*"></ColumnDefinition>
+
+        </Grid.ColumnDefinitions>
+
+
+        <ListView Grid.Row="1" Grid.Column="0" Margin="10" x:Name="ProdList" ItemsSource="{Binding Products}" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="2" Width="auto" Background="White" BorderThickness="3" CornerRadius="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"></ColumnDefinition>
+                                <ColumnDefinition Width="550"></ColumnDefinition>
+
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"></RowDefinition>
+                                <RowDefinition Height="100"></RowDefinition>
+                                <RowDefinition Height="50"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left">
+                                <TextBlock  TextWrapping="Wrap" Text="{Binding Name}" FontSize="20" Style="{StaticResource TxtBlock4}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="0" Grid.Row="0" Grid.RowSpan="3">
+                                <Image Source="{Binding mainPhoto}" Height="100" Width="70" Margin="10"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Grid.Row="1">
+                                <TextBlock  TextWrapping="Wrap" Text="{Binding Description}" Style="{StaticResource TxtBlock4}"></TextBlock>
+                                
+
+
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+                                <TextBlock Text="{Binding Price}" Style="{StaticResource TxtBlock4}" Margin="5"></TextBlock>
+                                <TextBlock Text="рублей" Style="{StaticResource TxtBlock4}" Margin="5"></TextBlock>
+                            </StackPanel>
+
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ListView Grid.Row="1" Margin="10" ItemsSource="{ Binding ProductsAdd}"  Grid.Column="1" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="2" Width="auto" Background="White"  BorderThickness="3" CornerRadius="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"></ColumnDefinition>
+                                <ColumnDefinition Width="550"></ColumnDefinition>
+
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"></RowDefinition>
+                                <RowDefinition Height="100"></RowDefinition>
+                                <RowDefinition Height="50"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left">
+                                <TextBlock TextWrapping="Wrap" Text="{Binding Name}" Style="{StaticResource TxtBlock4}" FontSize="20"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="0" Grid.Row="0" Grid.RowSpan="3">
+                                <Image Source="{Binding mainPhoto}" Height="100" Width="70" Margin="10"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Grid.Row="1">
+                                <TextBlock  TextWrapping="Wrap" Text="{Binding Description}" Style="{StaticResource TxtBlock4}"></TextBlock>
+                                
+
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+                                <TextBlock Text="{Binding Price}" Style="{StaticResource TxtBlock4}" Margin="5"></TextBlock>
+                                <TextBlock Text="рублей"  Style="{StaticResource TxtBlock4}" Margin="5"></TextBlock>
+                            </StackPanel>
+
+
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Margin="10" x:Name="ButtonAddProdOrder" Click="ButtonAddProdOrder_Click"  Style="{StaticResource Button}" >Добавить товар в корзину</Button>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
+            <Button Margin="10" x:Name="ButtonSave" Click="ButtonSave_Click"  Style="{StaticResource Button}">Оформить заказ</Button>
+        </StackPanel>
+        <Grid Grid.Row="3" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5">
+                <RadioButton GroupName="Delivery"  
+                             Margin="5" Foreground="Black"
+                             Content="Курьер" x:Name="Courier" Checked="Courier_Checked"
+                             Unchecked="Courier_Unchecked"/>
+            </StackPanel>
+
+
+            <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"  HorizontalAlignment="Left" Margin="5">
+
+                <RadioButton GroupName="Delivery" Content="Самовывоз" Foreground="Black"
+                             x:Name="Pickup"
+                             Margin="5"
+                             Checked="Pickup_Checked"
+                             Unchecked="Pickup_Unchecked"
+                             />
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" x:Name="IfPickup">
+
+                <TextBlock  Style="{StaticResource TxtBlock4}" >Выберите адрес пункта выдачи:</TextBlock>
+                <ComboBox Margin="10" x:Name="DeliveryPointCmb" SelectedIndex="0" Template="{DynamicResource ComboBoxTemplate1}" Style="{StaticResource ComboBox}" DisplayMemberPath="Address" SelectionChanged="DeliveryPointCmb_SelectionChanged"></ComboBox>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" x:Name="IfCourier">
+
+                <TextBlock  Style="{StaticResource TxtBlock4}" >Введите адрес:</TextBlock>
+                <TextBox Margin="10" Style="{StaticResource TextBox}" x:Name="AddressTb" Text="{Binding AddressDelivery}" MaxLength="50" PreviewTextInput="AddressTb_PreviewTextInput"></TextBox>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="3" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0"  VerticalAlignment="Center"  HorizontalAlignment="Left" Margin="5">
+
+                <TextBlock Margin="280 0 0 10" Style="{StaticResource TxtBlock4}" >Количество одного товара:</TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Row="0" VerticalAlignment="Center"  HorizontalAlignment="Right" Margin="5">
+
+                <TextBox Margin="10" x:Name="CountTb" Style="{StaticResource TextBox}" MaxLength="50" PreviewTextInput="CountTb_PreviewTextInput"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="1"  VerticalAlignment="Center"  HorizontalAlignment="Left" Margin="5">
+                <TextBlock Text="Выберите карту для оплаты" Style="{StaticResource TxtBlock4}"
+                           Margin="280 0 0 10"/>
+            </StackPanel>
+            <StackPanel  Grid.Row="1" VerticalAlignment="Center"  HorizontalAlignment="Right" Margin="5">
+                <ComboBox x:Name="CardCb" Style="{StaticResource ComboBox}" Template="{DynamicResource ComboBoxTemplate1}"
+                      SelectedIndex="0"
+                          Margin="5" 
+                            Width="200"
+                      DisplayMemberPath="Number" 
+                          SelectionChanged="CardCb_SelectionChanged"/>
+
+            </StackPanel>
+        </Grid>
+       
+        <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">
+            <Button x:Name="OtmenaBtn" Click="OtmenaBtn_Click"  Style="{StaticResource Button}">Отмена</Button>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">
+            <Button x:Name="AddPickUptn" Click="AddPickUptn_Click"  Style="{StaticResource Button}">Добавить пункт выдачи</Button>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10">
+            <Button x:Name="AddCardBtn" Click="AddCardBtn_Click"  Style="{StaticResource Button}">Добавить карту</Button>
+        </StackPanel>
+    </Grid>
+</Page>

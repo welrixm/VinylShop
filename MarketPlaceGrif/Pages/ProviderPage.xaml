@@ -1,0 +1,87 @@
+﻿<Page x:Class="MarketPlaceGrif.Pages.ProviderPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MarketPlaceGrif.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ProviderPage" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBlock  Margin="5"  Style="{StaticResource TxtBlock2}">Поиск</TextBlock>
+                <TextBox x:Name="SearchTb" Style="{StaticResource TextBox}" TextChanged="SearchTb_TextChanged" ></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+              
+                <Button x:Name="Germany" Click="Germany_Click_1"  Style="{StaticResource Button2}" Content="Германия" Width="150"></Button>
+                <Button x:Name="UK" Click="UK_Click"  Style="{StaticResource Button2}" Content="Великобритания" Width="150"></Button>
+                <Button x:Name="Austria" Click="Austria_Click"  Style="{StaticResource Button2}" Content="Австрия" Width="150"></Button>
+                <Button x:Name="USA" Click="USA_Click"  Style="{StaticResource Button2}" Content="США" Width="150"></Button>
+                <Button x:Name="China" Click="China_Click"  Style="{StaticResource Button2}" Content="Китай" Width="150"></Button>
+                <Button x:Name="Japan" Click="Japan_Click"  Style="{StaticResource Button2}" Content="Япония" Width="150"></Button>
+                <Button x:Name="Shweiz" Click="Shweiz_Click"  Style="{StaticResource Button2}" Content="Швейцария" Width="150"></Button>
+            </StackPanel>
+        </StackPanel>
+        <ListView x:Name="LVUser" Grid.Row="2" d:ItemsSource="{d:SampleData ItemCount=15}"  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel HorizontalAlignment="Center"></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" Background="White" CornerRadius="5" BorderThickness="2" Padding="5" Margin="10">
+
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+
+                                
+                                <RowDefinition Height="100"></RowDefinition>
+                                <RowDefinition Height="80"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="180"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            
+                            <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
+                                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <TextBlock Text="{Binding Id}" Margin="5" Style="{StaticResource TxtBlock5}"></TextBlock>
+                                    </StackPanel>
+                                    <TextBlock Text="{Binding Country.Name}" Margin="5" TextWrapping="Wrap" Style="{StaticResource TxtBlock}"></TextBlock>
+                                    <TextBlock Text="{Binding Name}" Margin="5" TextWrapping="Wrap" Style="{StaticResource TxtBlock}"></TextBlock>
+                                    
+                                  
+                                </StackPanel>
+
+
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="0">
+                                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                    <Button x:Name="EditBtn" Content="Редактировать" Click="EditBtn_Click"  Style="{StaticResource Button}" Margin="5"></Button>
+                                    <Button x:Name="DeleteBtn" Content="Удалить" Click="DeleteBtn_Click"  Style="{StaticResource Button}" Margin="5"></Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Border x:Name="BorderPlus" MouseLeftButtonDown="BorderPlus_MouseLeftButtonDown"  Margin="10"  Padding="0" CornerRadius="10" Grid.Row="3" Width="30" Height="30"
+                Background="#C74C25" BorderThickness="2" BorderBrush="Black" HorizontalAlignment="Right">
+            <Label FontSize="30" Margin="-2,-14,0,0" FontWeight="Bold" Foreground="WHite">+</Label>
+        </Border>
+    </Grid>
+</Page>

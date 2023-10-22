@@ -1,0 +1,54 @@
+﻿<Window x:Class="Client.Pages.InformationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client.Pages"
+        mc:Ignorable="d"
+        Title="Market Place Grif" Height="650" Width="500" ResizeMode="NoResize" Icon="/Resources/icon.png"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <ContentControl Content="{Binding DishObject}" 
+                        TextBlock.FontSize="15"
+                        Grid.Row="1"
+                        x:Name="ContentControl" >
+            <ContentControl.ContentTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="400"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="50*"/>
+                            <RowDefinition Height="5*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="{Binding ProductType.Name}" Style="{StaticResource TxtBlock}" Margin="5"></TextBlock>
+                            <Image Source="{Binding mainPhoto}" Width="150" Height="150" RenderOptions.BitmapScalingMode="Fant" Margin="5"></Image>
+                            <TextBlock x:Name="CategoryTbx" Text="{Binding Name}" Style="{StaticResource TxtBlock}" Margin="5"></TextBlock>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                                <TextBlock Text="{Binding Price}" Margin="5" Style="{StaticResource TxtBlock}"></TextBlock>
+
+                                <TextBlock Text="рублей" Margin="5" Style="{StaticResource TxtBlock}"></TextBlock>
+                            </StackPanel>
+                            <TextBlock Text="{Binding ActiveText}" Style="{StaticResource TxtBlock}" Margin="5"></TextBlock>
+                            <TextBlock Text="{Binding Author}" Style="{StaticResource TxtBlock}" Margin="5"></TextBlock>
+                            <TextBlock Text="{Binding YearRelize}" Style="{StaticResource TxtBlock}" Margin="5"></TextBlock>
+                            <TextBlock Text="{Binding State}" Style="{StaticResource TxtBlock}" Margin="5"></TextBlock>
+                            <TextBlock Text="{Binding Description}" Margin="5" Style="{StaticResource TxtBlock}" TextWrapping="Wrap"></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ContentControl.ContentTemplate>
+        </ContentControl>
+
+    </Grid>
+</Window>

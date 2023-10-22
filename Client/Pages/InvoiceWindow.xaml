@@ -1,0 +1,121 @@
+﻿<Window x:Class="Client.Pages.InvoiceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client.Pages"
+        mc:Ignorable="d"
+        Title="Market Place Grif"  Height="700" Width="535" ResizeMode="NoResize" Icon="/Resources/icon.png">
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20" Name="PrintBnt" Style="{StaticResource Button}" Click="PrintBnt_Click" Grid.Row="0">
+                Print
+            </Button>
+            <Grid x:Name="print" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="120"></RowDefinition>
+                    <RowDefinition Height="300"></RowDefinition>
+                    <RowDefinition Height="200"></RowDefinition>
+
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Vertical" Margin="20" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="Добро пожаловать!" Style="{StaticResource TxtBlock}"  FontSize="25" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="Товарный чек" Style="{StaticResource TxtBlock}"  FontSize="15" FontWeight="Bold"></TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Row="1" HorizontalAlignment="Stretch" Margin="20">
+                    <Grid HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Margin="10">
+                            <TextBlock Text="Номер заказа" Style="{StaticResource TxtBlock}" Margin="5"></TextBlock>
+                            <TextBlock Text="Дата заказа" Style="{StaticResource TxtBlock}" Margin="5"></TextBlock>
+                            <TextBlock Text="Дата прибытия" Style="{StaticResource TxtBlock}" Margin="5"></TextBlock>
+                            <TextBlock Text="Заказчик" Style="{StaticResource TxtBlock}" Margin="5"></TextBlock>
+                            
+
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Margin="10">
+                            <TextBlock Text="{Binding Id}" Style="{StaticResource TxtBlock}" Margin="5"></TextBlock>
+                            <TextBlock Text="{Binding Date}" Style="{StaticResource TxtBlock}" Margin="5"></TextBlock>
+                            <TextBlock Text="{Binding TimeToCome}" Style="{StaticResource TxtBlock}" Margin="5"></TextBlock>
+                            <TextBlock Text="{Binding User.FUO}" Style="{StaticResource TxtBlock}" Margin="5"></TextBlock>
+                           
+                        </StackPanel>
+                    </Grid>
+                    <Grid >
+                        <ListBox  ItemsSource="{Binding ProductOrders}" Height="100" >
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel IsItemsHost="True"></WrapPanel>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                <TextBlock Text="{Binding Product.Name}" Style="{StaticResource TxtBlock}"></TextBlock>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                <TextBlock Style="{StaticResource TxtBlock}">Количество товаров:</TextBlock>
+                                                <TextBlock Text="{Binding Count}" Style="{StaticResource TxtBlock}"></TextBlock>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                <TextBlock Style="{StaticResource TxtBlock}">Цена:</TextBlock>
+                                                <TextBlock Text="{Binding Product.Price}" Style="{StaticResource TxtBlock}"></TextBlock>
+                                            </StackPanel>
+
+
+                                        </StackPanel>
+                                    </StackPanel>
+
+
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Margin="20" >
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Style="{StaticResource TxtBlock}" Text="Общее количество"></TextBlock>
+                        <TextBlock Grid.Column="1" Style="{StaticResource TxtBlock}" Text="Общая сумма"></TextBlock>
+
+                    </Grid>
+                    <Rectangle Fill="Black" Height="1" Margin="5 2" Opacity="0.5"></Rectangle>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" >
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="{Binding Count, StringFormat={}{0}}" Style="{StaticResource TxtBlock}"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                        <TextBlock Grid.Column="1"  Text="{Binding TotalPrice, StringFormat={}{0:f} руб.}" Style="{StaticResource TxtBlock}"></TextBlock>
+                    </Grid>
+                    <Rectangle Fill="Black" Height="1" Margin="5 2" Opacity="0.5"></Rectangle>
+                    <Grid Margin="0 20" HorizontalAlignment="Stretch">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="Спасибо за покупку!" Style="{StaticResource TxtBlock}" FontSize="15"></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+
+</Window>

@@ -1,0 +1,37 @@
+﻿<Window x:Class="Storekeeper.Pages.MessageEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Storekeeper.Pages"
+        mc:Ignorable="d"
+        Title="Market Place Grif" Height="350" Width="400"  ResizeMode="NoResize" Icon="/Resources/icon.png">
+    <Grid>
+
+        <Grid.Background>
+            <SolidColorBrush Color="#d1f5f4"></SolidColorBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="180"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock Style="{StaticResource TxtBlock}">Тема:</TextBlock>
+                    <TextBox x:Name="NameTbx" Style="{StaticResource TextBox}" MaxLength="50"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBox x:Name="TextTbx" Style="{StaticResource TextBox}" MaxLength="1000" AcceptsReturn="True" Height="100" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Visible"></TextBox>
+                </StackPanel>
+            </StackPanel>
+
+        </StackPanel>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top" Grid.Row="1"  HorizontalAlignment="Center">
+            <Button x:Name="SaveBtn"  Content="Отправить"  VerticalAlignment="Top" Click="SaveBtn_Click"  Style="{StaticResource Button}" Margin="5"></Button>
+            <Button VerticalAlignment="Top" x:Name="BackBtn" Click="BackBtn_Click" Style="{StaticResource Button}" Margin="5">Отмена</Button>
+            <Button  VerticalAlignment="Top" x:Name="CleanBtn" Click="CleanBtn_Click"  Style="{StaticResource Button}" Margin="5">Очистить</Button>
+        </StackPanel>
+    </Grid>
+</Window>
